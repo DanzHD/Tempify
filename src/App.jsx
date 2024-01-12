@@ -94,7 +94,7 @@ function App() {
 
         if (spotifyConnectError === 'access_denied') {
             window.history.replaceState(null, "SpotPlot", "/");
-            notify({
+            return void notify({
                 text: "It looks like you cancelled connecting to Spotify. Please try again"
             });
         }
