@@ -24,7 +24,7 @@ export const generateCodeVerifier = () => {
 export async function generateCodeChallengeFromVerifier(codeVerifier) {
     const hashed = await sha256(codeVerifier);
 
-    return ase64encode(hashed);
+    return base64encode(hashed);
 
 
 
