@@ -2,13 +2,11 @@ import './Styles/App.css'
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {generateCodeChallengeFromVerifier, generateCodeVerifier} from "./pkce.jsx";
-
 import notify from "./utils/notify.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import Main from "./Pages/Main/Main.jsx";
 
 async function getToken({ setToken, authProps }) {
-
 
     const options = {
         method: 'POST',
@@ -130,9 +128,7 @@ function App() {
     }
 
     if (error) {
-        return (
-            <div>Something went wrong connecting to spotify</div>
-        )
+        notify({text: "Something went wrong"})
     }
 
     if ((spotifyAuthCode || localStorage.getItem('refresh-token')) && !accessToken) {

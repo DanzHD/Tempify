@@ -1,4 +1,4 @@
-import {Button} from "@mui/material";
+import {Button} from "@mantine/core";
 
 export default function Main({ accessToken, signOut }) {
     return (

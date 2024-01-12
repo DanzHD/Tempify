@@ -1,0 +1,24 @@
+.home_body {
+    margin-top: 10rem;
+    display: flex;
+    box-sizing: border-box;
+
+
+}
+
+.home_text {
+    margin-left: 10rem;
+    margin-right: 20rem;
+    font-weight: 900;
+    font-family: Circular Std, sans-serif;
+}
+
+.home_charts {
+    width: 40rem;
+    height: 40rem;
+    background-color: black;
+    color: white;
+    margin-left: 23rem;
+
+}
+
