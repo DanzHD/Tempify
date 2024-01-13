@@ -20,23 +20,24 @@ export default function Home({ onConnect }) {
 
 
             <section className='home_body'>
-                <div className='home_charts'>
-                    Placeholder
-                </div>
-                <div className='home_text'>
-                    <div style={{color: 'white'}}> Visualize your own personalized Spotify data</div>
-                    <div style={{fontSize: '1em', fontWeight: '500'}}>Simply connect your Spotify account and we'll generate beautiful plots of your data</div>
 
-                    <Button style={{marginTop: '5rem'}} onClick={onConnect} >
+                <div className='home_text'>
+                    <div style={{color: 'white', textAlign: 'center'}}> Visualize your own personalized Spotify data</div>
+                    <Text subheading style={{color: 'white', fontWeight: '500'}}>Simply connect your Spotify account and we'll generate beautiful plots of your data</Text>
+
+
+                    <Button style={{marginTop: '20px'}} onClick={onConnect} >
                         <img
                             alt='logo'
                             src='../.././assets/Spotify_Icon_RGB_Black.png'
-                            style={{height: '25px', width: '25px', marginRight: '0.5em'}}/>
+                            style={ {height: '25px', width: '25px'}}/>
                         <Text subheading style={{fontStyle: 'Circular Std', fontWeight: '700'}}>
                             Connect to Spotify
                         </Text>
                     </Button>
+
                 </div>
+
             </section>
 
 

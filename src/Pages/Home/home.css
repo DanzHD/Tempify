@@ -5,7 +5,6 @@
         justify-content: center;
         text-align: center;
         font-size: 18px;
-        padding-left: 10px;
     }
 
     .home_text > div:first-child {
@@ -21,12 +20,6 @@
         gap: 5rem;
     }
 
-    .home_charts {
-        min-width: 200px;
-        min-height: 200px;
-        background-color: black;
-        color: white;
-    }
 
     .home_text > div:first-child {
         font-size: 3rem;
@@ -43,6 +36,7 @@
 
 .home_text > div:nth-child(2) {
     color: white;
+
 }
 
 .home_body {
@@ -55,6 +49,9 @@
 
     font-weight: 900;
     font-family: Circular Std, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
