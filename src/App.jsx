@@ -2,9 +2,10 @@ import './Styles/App.css'
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {generateCodeChallengeFromVerifier, generateCodeVerifier} from "./pkce.jsx";
-import notify from "./utils/notify.jsx";
+import notify from "./Common/utils/notify.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import Main from "./Pages/Main/Main.jsx";
+
 
 async function getToken({ setToken, authProps }) {
 

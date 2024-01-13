@@ -1,23 +1,23 @@
 import {Toaster} from "react-hot-toast";
-import {Button, Flex, Grid, Image, Text, Title} from "@mantine/core";
-import '@mantine/core/styles.css';
 import './home.css'
-import {useMediaQuery} from "react-responsive";
+import Button from "../../Common/Components/Button/Button.jsx";
+import Flex from "../../Common/Components/Flex/Flex.jsx";
+import Text from "../../Common/Components/Text/Text.jsx";
+
+
 
 export default function Home({ onConnect }) {
-    const isMobileOrDesktop = useMediaQuery({
-        query: '(min-width: 481px)'
-    })
 
     return (
         <>
             <Toaster />
-            <Flex align='center' justify='space-around' style={{paddingTop: '1em'}}>
-                <Flex align='center'>
-                    <Text  fw={800} style={{fontSize: '2rem'}} >SpotPlot</Text>
-                </Flex>
 
+            <Flex style={{paddingTop: '10px'}}>
+                <Text heading style={{fontSize: '3rem', fontWeight: '1100', textAlign: 'center'}} >SpotPlot</Text>
             </Flex>
+
+
+
 
             <section className='home_body'>
                 <div className='home_charts'>
@@ -27,9 +27,12 @@ export default function Home({ onConnect }) {
                     <div style={{color: 'white'}}> Visualize your own personalized Spotify data</div>
                     <div style={{fontSize: '1em', fontWeight: '500'}}>Simply connect your Spotify account and we'll generate beautiful plots of your data</div>
 
-                    <Button style={{marginTop: '5rem'}} onClick={onConnect} variant="filled" size='lg'>
-                        <Image src='../.././assets/Spotify_Icon_RGB_Black.png' height='25px' width='25px' style={{marginRight: '0.5em'}}/>
-                        <Text style={{fontStyle: 'Circular Std', fontWeight: '700', fontSize: '1em'}}>
+                    <Button style={{marginTop: '5rem'}} onClick={onConnect} >
+                        <img
+                            alt='logo'
+                            src='../.././assets/Spotify_Icon_RGB_Black.png'
+                            style={{height: '25px', width: '25px', marginRight: '0.5em'}}/>
+                        <Text subheading style={{fontStyle: 'Circular Std', fontWeight: '700'}}>
                             Connect to Spotify
                         </Text>
                     </Button>
