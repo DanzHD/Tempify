@@ -1,0 +1,14 @@
+.main_heading {
+    padding-top: 20px;
+    height: 50px;
+}
+
+.page_layout_main {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.page_layout_main > .carousel_container {
+    flex: 0 1 auto;
+}

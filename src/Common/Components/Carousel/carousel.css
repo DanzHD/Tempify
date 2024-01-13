@@ -1,0 +1,22 @@
+.carousel_container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: auto;
+    transition-timing-function: linear;
+
+
+}
+
+.carousel_slide {
+    flex: 0 1 auto;
+
+}
+
+.carousel_navigate {
+    color: white;
+    cursor: pointer;
+    align-self: flex-end;
+    padding-bottom: 5em;
+}

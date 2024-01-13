@@ -12,8 +12,8 @@ export default function Home({ onConnect }) {
         <>
             <Toaster />
 
-            <Flex style={{paddingTop: '10px'}}>
-                <Text heading style={{fontSize: '3rem', fontWeight: '1100', textAlign: 'center'}} >SpotPlot</Text>
+            <Flex style={{paddingTop: '10px', justifyContent: 'center'}}>
+                <Text heading style={{fontSize: '3rem', fontWeight: '1100'}} >SpotPlot</Text>
             </Flex>
 
 
@@ -31,7 +31,7 @@ export default function Home({ onConnect }) {
                             alt='logo'
                             src='../.././assets/Spotify_Icon_RGB_Black.png'
                             style={ {height: '25px', width: '25px'}}/>
-                        <Text subheading style={{fontStyle: 'Circular Std', fontWeight: '700'}}>
+                        <Text subheading style={{fontStyle: 'Circular Std', fontWeight: '700', marginLeft: '10px'}}>
                             Connect to Spotify
                         </Text>
                     </Button>

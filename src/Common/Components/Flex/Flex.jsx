@@ -1,4 +1,5 @@
 import cx from "classnames";
+import './flex.css'
 export default function Flex({
     children,
     style,
