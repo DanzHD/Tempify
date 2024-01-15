@@ -11,8 +11,8 @@ async function getAllTracks({ accessToken, playlistID }) {
     if (total <= MAX_LIMIT) {
         const {data: {items}} = await axios.get(`https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=${MAX_LIMIT}`, options);
         return items.map(item => item.track.id);
-
     }
+
     let requests = [];
     for (let i = 0; i < Math.ceil(total/MAX_LIMIT); i++) {
         let {data: {items}} = await axios.get(`https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=${MAX_LIMIT}&offset=${i * MAX_LIMIT}`, options);
@@ -22,7 +22,27 @@ async function getAllTracks({ accessToken, playlistID }) {
     const allTracks = await Promise.all(requests);
     return allTracks.reduce((all, items) => [...all, ...items.map(item => item.track.id)], []);
 
+}
 
+async function getLikedTracks({ accessToken }) {
+    const options = {
+        headers: { Authorization: `Bearer ${accessToken}`}
+    }
+    const {data: {total}} = await axios.get(`https://api.spotify.com/v1/me/tracks?limit=1`, options);
+
+    if (total <= MAX_LIMIT) {
+        const {data: {items}} = await axios.get(`https://api.spotify.com/v1/me/tracks?limit=50`, options);
+        return items.map(item => item.track.id);
+    }
+
+    let requests = [];
+    for (let i = 0; i < Math.ceil(total/MAX_LIMIT); i++) {
+        let {data: {items}} = await axios.get(`https://api.spotify.com/v1/me/tracks?limit=${MAX_LIMIT}&offset=${MAX_LIMIT * i}`, options);
+        requests.push(items);
+    }
+
+    const allTracks = await Promise.all(requests);
+    return allTracks.reduce((all, items) => [...all, ...items.map(item => item.track.id)], []);
 
 }
 
@@ -53,13 +73,20 @@ async function getAllPlaylists({ accessToken }) {
 }
 
 export default async function getItems({accessToken}) {
-    let tracks = []
+    let tracks = [];
+
     let playlists = await getAllPlaylists({ accessToken});
     for (let i = 0; i < playlists.length; i++) {
 
         let newTracks = await getAllTracks({ accessToken, playlistID: playlists[i]});
         tracks = [...tracks, ...newTracks];
     }
+    console.log(tracks)
+
+    const likedTracks = await getLikedTracks({accessToken});
+
+    tracks = [...tracks, ...likedTracks]
+
 
 
 
