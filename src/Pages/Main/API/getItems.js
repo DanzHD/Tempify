@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const MAX_LIMIT = 50;
+const MAX_ITEM_LIMIT = 50;
+const MAX_ANALYSIS_LIMIT = 100;
 
 async function getAllTracks({ accessToken, playlistID }) {
     const options = {
@@ -8,14 +9,14 @@ async function getAllTracks({ accessToken, playlistID }) {
     }
     const {data: {total}} = await axios.get(`https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=1`, options);
 
-    if (total <= MAX_LIMIT) {
-        const {data: {items}} = await axios.get(`https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=${MAX_LIMIT}`, options);
+    if (total <= MAX_ITEM_LIMIT) {
+        const {data: {items}} = await axios.get(`https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=${MAX_ITEM_LIMIT}`, options);
         return items.map(item => item.track.id);
     }
 
     let requests = [];
-    for (let i = 0; i < Math.ceil(total/MAX_LIMIT); i++) {
-        let {data: {items}} = await axios.get(`https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=${MAX_LIMIT}&offset=${i * MAX_LIMIT}`, options);
+    for (let i = 0; i < Math.ceil(total/MAX_ITEM_LIMIT); i++) {
+        let {data: {items}} = await axios.get(`https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=${MAX_ITEM_LIMIT}&offset=${i * MAX_ITEM_LIMIT}`, options);
         requests.push(items);
     }
 
@@ -30,19 +31,36 @@ async function getLikedTracks({ accessToken }) {
     }
     const {data: {total}} = await axios.get(`https://api.spotify.com/v1/me/tracks?limit=1`, options);
 
-    if (total <= MAX_LIMIT) {
+    if (total <= MAX_ITEM_LIMIT) {
         const {data: {items}} = await axios.get(`https://api.spotify.com/v1/me/tracks?limit=50`, options);
         return items.map(item => item.track.id);
     }
 
     let requests = [];
-    for (let i = 0; i < Math.ceil(total/MAX_LIMIT); i++) {
-        let {data: {items}} = await axios.get(`https://api.spotify.com/v1/me/tracks?limit=${MAX_LIMIT}&offset=${MAX_LIMIT * i}`, options);
+    for (let i = 0; i < Math.ceil(total/MAX_ITEM_LIMIT); i++) {
+        let {data: {items}} = await axios.get(`https://api.spotify.com/v1/me/tracks?limit=${MAX_ITEM_LIMIT}&offset=${MAX_ITEM_LIMIT * i}`, options);
         requests.push(items);
     }
 
     const allTracks = await Promise.all(requests);
     return allTracks.reduce((all, items) => [...all, ...items.map(item => item.track.id)], []);
+
+}
+
+async function getAllTrackAnalysis({ accessToken, tracks }) {
+    const options = {
+        headers: { Authorization: `Bearer ${accessToken}`}
+    }
+
+    const requests = []
+    for (let i = 0; i < tracks.length; i += MAX_ANALYSIS_LIMIT) {
+        let analyseTracks = tracks.slice(i, Math.min(i + MAX_ANALYSIS_LIMIT, tracks.length)).toString();
+        let {data: {audio_features: audioFeatures}} = await axios(`https://api.spotify.com/v1/audio-features?ids=${analyseTracks}`, options);
+        requests.push(audioFeatures);
+    }
+
+    const trackAudioFeatures = await Promise.all(requests);
+    return trackAudioFeatures.reduce((all, audioFeatures) => [...all, ...audioFeatures], []);
 
 }
 
@@ -54,7 +72,7 @@ async function getAllPlaylists({ accessToken }) {
     }
     const {data: {total}} = await axios.get(`https://api.spotify.com/v1/me/playlists?limit=1`, options);
 
-    if (total <= MAX_LIMIT) {
+    if (total <= MAX_ITEM_LIMIT) {
         const {data: {items}} = await axios.get(`https://api.spotify.com/v1/me/playlists?limit=${limit}`, options);
 
         return items.map(playlist => playlist.id);
@@ -62,8 +80,8 @@ async function getAllPlaylists({ accessToken }) {
 
     const requests = []
 
-    for (let i = 0; i < Math.ceil(total/MAX_LIMIT); i++) {
-        let {data: {items} } = await axios.get(`https://api.spotify.com/v1/me/playlists?limit=${limit}&offset=${MAX_LIMIT * i}`, options)
+    for (let i = 0; i < Math.ceil(total/MAX_ITEM_LIMIT); i++) {
+        let {data: {items} } = await axios.get(`https://api.spotify.com/v1/me/playlists?limit=${limit}&offset=${MAX_ITEM_LIMIT * i}`, options)
         requests.push(items);
     }
 
@@ -81,12 +99,13 @@ export default async function getItems({accessToken}) {
         let newTracks = await getAllTracks({ accessToken, playlistID: playlists[i]});
         tracks = [...tracks, ...newTracks];
     }
-    console.log(tracks)
 
     const likedTracks = await getLikedTracks({accessToken});
 
     tracks = [...tracks, ...likedTracks]
 
+    let tracksAudioFeatures = await getAllTrackAnalysis({ accessToken, tracks})
+    console.log(tracksAudioFeatures);
 
 
 
