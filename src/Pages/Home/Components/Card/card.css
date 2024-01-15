@@ -1,0 +1,23 @@
+.card {
+    min-width: 250px;
+    height: 250px;
+    display: flex;
+    flex-flow: column;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)
+}
+
+.card-heading {
+    background-color: #619df3;
+    display: flex;
+    justify-content: center;
+    flex-basis: 33.33%;
+}
+
+.card-context {
+    display: flex;
+    padding: 10px;
+    flex-basis: 66.66%;
+    background-color: white;
+
+}
+

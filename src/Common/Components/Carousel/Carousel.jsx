@@ -1,5 +1,5 @@
 import './carousel.css'
-import {Children, useState} from "react";
+import {Children, useEffect, useState} from "react";
 export default function Carousel({
     children
 }) {
@@ -15,18 +15,10 @@ export default function Carousel({
 
     const handleNext = () => {
         let index = activeIndex + 1;
-        setActiveIndex(index >= carouselSlides.length ? activeIndex : index)
+        setActiveIndex(activeIndex => index >= carouselSlides.length ? activeIndex : index)
     }
 
-    window.addEventListener('keydown', (e) => {
 
-        if (e.code === 'ArrowRight') {
-            handleNext();
-        }
-        if (e.code === 'ArrowLeft') {
-            handlePrevious();
-        }
-    })
 
 
     return (

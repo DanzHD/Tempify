@@ -3,7 +3,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import {generateCodeChallengeFromVerifier, generateCodeVerifier} from "./pkce.jsx";
 import notify from "./Common/utils/notify.jsx";
-import Home from "./Pages/Home/Home.jsx";
+import Home from "./Pages/Home/Components/Home/Home.jsx";
 import Main from "./Pages/Main/Main.jsx";
 
 

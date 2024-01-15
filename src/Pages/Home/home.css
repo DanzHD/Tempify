@@ -39,25 +39,30 @@
 
 }
 
-.home_body {
-    margin-top: 10rem;
-    display: flex;
-    box-sizing: border-box;
+@media only screen and (min-width: 481px) {
+
+    .home_body {
+        margin-top: 10rem;
+        display: flex;
+        box-sizing: border-box;
+    }
+    .home_text {
+
+        font-weight: 900;
+        font-family: Circular Std, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .home_charts {
+        background-color: black;
+        color: white;
+    }
 }
 
-.home_text {
-
-    font-weight: 900;
-    font-family: Circular Std, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 
-.home_charts {
-    background-color: black;
-    color: white;
-}
 
 
