@@ -11,7 +11,13 @@ async function getAllTracks({ accessToken, playlistID }) {
 
     if (total <= MAX_ITEM_LIMIT) {
         const {data: {items}} = await axios.get(`https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=${MAX_ITEM_LIMIT}`, options);
-        return items.map(item => item.track.id);
+        return items.map(item => {
+            return {
+                id: item.track.id,
+                name: item.track.name,
+                image: item.track.album.images[0].url
+            }
+        });
     }
 
     let requests = [];
@@ -21,7 +27,13 @@ async function getAllTracks({ accessToken, playlistID }) {
     }
 
     const allTracks = await Promise.all(requests);
-    return allTracks.reduce((all, items) => [...all, ...items.map(item => item.track.id)], []);
+    return allTracks.reduce((all, items) => [...all, ...items.map(item => {
+        return {
+            id: item.track.id,
+            name: item.track.name,
+            image: item.track.album.images[0].url
+        }
+    })], []);
 
 }
 
@@ -33,7 +45,13 @@ async function getLikedTracks({ accessToken }) {
 
     if (total <= MAX_ITEM_LIMIT) {
         const {data: {items}} = await axios.get(`https://api.spotify.com/v1/me/tracks?limit=50`, options);
-        return items.map(item => item.track.id);
+        return items.map(item => {
+            return {
+                id: item.track.id,
+                name: item.track.name,
+                image: item.track.album.images[0].url
+            }
+        });
     }
 
     let requests = [];
@@ -43,7 +61,13 @@ async function getLikedTracks({ accessToken }) {
     }
 
     const allTracks = await Promise.all(requests);
-    return allTracks.reduce((all, items) => [...all, ...items.map(item => item.track.id)], []);
+    return allTracks.reduce((all, items) => [...all, ...items.map(item => {
+        return {
+            id: item.track.id,
+            name: item.track.name,
+            image: item.track.album.images[0].url
+        }
+    })], []);
 
 }
 
@@ -54,9 +78,13 @@ async function getAllTrackAnalysis({ accessToken, tracks }) {
 
     const requests = []
     for (let i = 0; i < tracks.length; i += MAX_ANALYSIS_LIMIT) {
-        let analyseTracks = tracks.slice(i, Math.min(i + MAX_ANALYSIS_LIMIT, tracks.length)).toString();
+        let analyseTracks = tracks.slice(i, Math.min(i + MAX_ANALYSIS_LIMIT, tracks.length)).map(track => track.id).toString();
         let {data: {audio_features: audioFeatures}} = await axios(`https://api.spotify.com/v1/audio-features?ids=${analyseTracks}`, options);
-        requests.push(audioFeatures);
+        requests.push(audioFeatures.map(audioFeature => {
+            let track = tracks.find(track => audioFeature.id === track.id);
+            return {...audioFeature, ...track}
+
+        }));
     }
 
     const trackAudioFeatures = await Promise.all(requests);

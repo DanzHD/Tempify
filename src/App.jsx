@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {generateCodeChallengeFromVerifier, generateCodeVerifier} from "./pkce.jsx";
 import notify from "./Common/utils/notify.jsx";
 import Home from "./Pages/Home/Components/Home/Home.jsx";
-import Main from "./Pages/Main/API/components/Main/Main.jsx";
+import Main from "./Pages/Main/components/Main/Main.jsx";
 
 
 async function getToken({ setToken, authProps }) {

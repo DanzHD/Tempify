@@ -1,6 +1,6 @@
-import Button from "../../../../../Common/Components/Button/Button.jsx";
+import Button from "../../../../Common/Components/Button/Button.jsx";
 import './header.css'
-import Text from "../../../../../Common/Components/Text/Text.jsx";
+import Text from "../../../../Common/Components/Text/Text.jsx";
 export default function Header({logo, description, signOut}) {
 
     return (
