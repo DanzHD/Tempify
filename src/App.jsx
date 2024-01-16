@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {generateCodeChallengeFromVerifier, generateCodeVerifier} from "./pkce.jsx";
 import notify from "./Common/utils/notify.jsx";
 import Home from "./Pages/Home/Components/Home/Home.jsx";
-import Main from "./Pages/Main/Main.jsx";
+import Main from "./Pages/Main/API/components/Main/Main.jsx";
 
 
 async function getToken({ setToken, authProps }) {
@@ -107,15 +107,19 @@ function App() {
         if (!refreshToken || spotifyAuthCode) {
             return;
         }
-
         const refresh = async () => {
-            await getToken({
-                setToken: setAccessToken,
-                authProps: {
-                    refresh_token: refreshToken,
-                    grant_type: "refresh_token"
-                }
-            });
+            try {
+
+                await getToken({
+                    setToken: setAccessToken,
+                    authProps: {
+                        refresh_token: refreshToken,
+                        grant_type: "refresh_token"
+                    }
+                });
+            } catch (err) {
+                console.error(err);
+            }
 
         }
         refresh();

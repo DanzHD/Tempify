@@ -1,6 +1,6 @@
 import './main.css'
-import {useEffect, useState} from "react";
-import getItems from "./API/getItems.js";
+import {useState} from "react";
+import Header from "../Header/Header.jsx";
 
 const STAGES = {
     BPM: 'Select BPM',
@@ -10,14 +10,14 @@ const STAGES = {
 
 export default function Main({ accessToken, signOut }) {
     const [stages, setStage] = useState(STAGES.BPM);
-    useEffect(() => {
-        getItems({ accessToken })
-    }, [])
+    // useEffect(() => {
+    //     getItems({ accessToken })
+    // }, [])
 
     return (
         <>
-            <div className='page_layout'>
-
+            <div className='main'>
+                <Header signOut={signOut} logo={<div className='logo'>SpotPlot</div>} />
             </div>
         </>
     )

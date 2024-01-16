@@ -105,7 +105,9 @@ export default async function getItems({accessToken}) {
     tracks = [...tracks, ...likedTracks]
 
     let tracksAudioFeatures = await getAllTrackAnalysis({ accessToken, tracks})
-    console.log(tracksAudioFeatures);
+
+    return tracksAudioFeatures;
+
 
 
 

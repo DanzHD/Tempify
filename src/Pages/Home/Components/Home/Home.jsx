@@ -1,5 +1,5 @@
 import {Toaster} from "react-hot-toast";
-import '../../home.css'
+import './home.css'
 import Button from "../../../../Common/Components/Button/Button.jsx";
 import Flex from "../../../../Common/Components/Flex/Flex.jsx";
 import Text from "../../../../Common/Components/Text/Text.jsx";
