@@ -1,17 +1,18 @@
-p {
-    font-size: 16px;
-}
 
-h1 {
+p {
     font-size: 24px;
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 32px;
+}
+h1 {
+    font-size: 40px;
 }
 
+
 p, h1, h2 {
-    font-family: Circular Std;
+    font-family: 'Circular Std', 'sans-serif';
     padding: 0;
     margin: 0;
 }

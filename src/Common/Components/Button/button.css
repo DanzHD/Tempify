@@ -19,6 +19,7 @@
 }
 
 .button {
+    min-width: fit-content;
     background-color: lightgreen;
     display: flex;
     justify-content: center;
