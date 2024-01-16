@@ -33,12 +33,17 @@ export default function Main({ accessToken, signOut }) {
     const [stage, setStage] = useState(STAGES.Select);
     const [tracks, setTracks] = useState(null);
     const [creatingPlaylist, setCreatingPlaylist] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(0);
 
     const onGeneratePlaylist = async (e) => {
         e.preventDefault();
         setCreatingPlaylist(true);
         let retrievedTracks = await getItems({accessToken});
+        /* remove duplicates */
+        retrievedTracks = retrievedTracks.filter((track, i) => {
+            return i === retrievedTracks.findIndex(t => track.id === t.id)
+        })
+
         let tempo = e.target.tempo.value;
         if (tempo === 'noTempo' || tempo === null) {
             setTracks(retrievedTracks)
@@ -91,11 +96,7 @@ export default function Main({ accessToken, signOut }) {
                         <div className='tailor'>
                             <Pagination items={tracks} itemsPerPage={TRACKS_PER_PAGE} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                             <Button onClick={() => setStage(STAGES.Select)}> Back </Button>
-                            {
-                                tracks.slice(currentPage * TRACKS_PER_PAGE, Math.min((currentPage + 1) * 20), tracks.length).map(track => {
-                                    return <div>a </div>
-                                })
-                            }
+
                         </div>
 
 

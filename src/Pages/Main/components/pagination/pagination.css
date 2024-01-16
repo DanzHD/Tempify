@@ -1,7 +1,26 @@
 .pagination {
     display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    padding-right: 50px;
+
 }
 
-.active {
+.pagination_item {
+    background-color: lightgrey;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 20px;
+    height: 200px;
+    box-sizing: border-box;
+}
 
+.pagination_control_container {
+    display: flex;
+}
+
+.pagination_control_button {
+    width: 50px;
+    height: 50px;
+    border: 4px solid black;
 }

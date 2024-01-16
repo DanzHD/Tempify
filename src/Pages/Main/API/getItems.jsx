@@ -130,9 +130,10 @@ export default async function getItems({accessToken}) {
 
     const likedTracks = await getLikedTracks({accessToken});
 
-    tracks = [...tracks, ...likedTracks]
+    tracks = [...tracks, likedTracks];
 
     let tracksAudioFeatures = await getAllTrackAnalysis({ accessToken, tracks})
+
 
     return tracksAudioFeatures;
 
