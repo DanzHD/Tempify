@@ -10,7 +10,7 @@ function Pagination({
 
     let totalPages = Math.ceil(items.length/itemsPerPage);
     totalPages = [...Array(totalPages).keys()];
-    console.log(items);
+
     return (
         <div className='pagination'>
             <div className='pagination_control_container'>

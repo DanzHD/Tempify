@@ -6,6 +6,7 @@ import Select from "react-select";
 import Button from "../../../../Common/Components/Button/Button.jsx";
 import getItems from "../../API/getItems.jsx";
 import Pagination from "../pagination/Pagination.jsx";
+import createPlaylistWithTracks from "../../API/createPlaylist.jsx";
 
 const STAGES = {
     Select: 'Select BPM',
@@ -63,6 +64,10 @@ export default function Main({ accessToken, signOut }) {
 
     }
 
+    const handleCreatePlaylist = async () => {
+        await createPlaylistWithTracks({accessToken, tracks});
+    }
+
 
 
     if (creatingPlaylist) {
@@ -96,6 +101,7 @@ export default function Main({ accessToken, signOut }) {
                         <div className='tailor'>
                             <Pagination items={tracks} itemsPerPage={TRACKS_PER_PAGE} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                             <Button onClick={() => setStage(STAGES.Select)}> Back </Button>
+                            <Button onClick={handleCreatePlaylist} > Create </Button>
 
                         </div>
 

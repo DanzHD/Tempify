@@ -70,7 +70,8 @@ function App() {
         const codeChallenge = await generateCodeChallengeFromVerifier(codeVerifier);
 
         const scope = `playlist-read-private playlist-read-collaborative user-follow-read user-read-playback-position`
-            + ` user-top-read user-read-recently-played user-library-read `
+            + ` user-top-read user-read-recently-played user-library-read playlist-modify-public playlist-modify-private`
+            + ` user-read-private user-read-email`
         const authUrl = new URL("https://accounts.spotify.com/authorize")
 
         const params = {

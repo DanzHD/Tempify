@@ -15,7 +15,8 @@ async function getAllTracks({ accessToken, playlistID }) {
             return {
                 id: item.track.id,
                 name: item.track.name,
-                image: item.track.album.images[0].url
+                image: item.track.album.images[0].url,
+                uri: item.track.uri
             }
         });
     }
@@ -31,7 +32,8 @@ async function getAllTracks({ accessToken, playlistID }) {
         return {
             id: item.track.id,
             name: item.track.name,
-            image: item.track.album.images[0].url
+            image: item.track.album.images[0].url,
+            uri: item.track.uri
         }
     })], []);
 
@@ -49,7 +51,9 @@ async function getLikedTracks({ accessToken }) {
             return {
                 id: item.track.id,
                 name: item.track.name,
-                image: item.track.album.images[0].url
+                image: item.track.album.images[0].url,
+                uri: item.track.uri
+
             }
         });
     }
@@ -65,7 +69,8 @@ async function getLikedTracks({ accessToken }) {
         return {
             id: item.track.id,
             name: item.track.name,
-            image: item.track.album.images[0].url
+            image: item.track.album.images[0].url,
+            uri: item.track.uri
         }
     })], []);
 
