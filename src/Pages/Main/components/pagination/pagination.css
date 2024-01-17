@@ -11,11 +11,13 @@
     width: 100%;
     margin-bottom: 20px;
     padding: 20px;
-    height: 200px;
+    min-height: 140px;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: Circular Std, sans-serif;
 }
-
-
 
 .pagination_control_container {
     display: flex;
@@ -31,4 +33,57 @@
 .pagination_control_button {
     font-size: 20px;
     cursor: pointer;
+}
+
+
+
+.checkbox {
+    height: 20px;
+    width: 20px;
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+.checkbox:checked {
+    background-color: #6b99ff;
+}
+
+.track_name {
+    font-weight: 600;
+}
+
+@media only screen and (min-width: 700px) {
+    .track_name {
+
+        font-size: 24px;
+    }
+
+    .track_image > img {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+@media only screen and (max-width: 700px) and (min-width: 400px) {
+    .track_name {
+        font-size: 20px;
+    }
+
+    .track_image > img {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .track_name {
+
+        font-size: 16px;
+    }
+
+    .track_image > img {
+        width: 30px;
+        height: 30px;
+    }
 }

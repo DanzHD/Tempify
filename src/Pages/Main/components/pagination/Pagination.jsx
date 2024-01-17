@@ -53,7 +53,25 @@ function Pagination({
                 items.slice(currentPage * itemsPerPage, Math.min((currentPage + 1) * itemsPerPage, items.length)).map((item, i) => {
                     return (
                         <div key={item.id} className='pagination_item'>
-                            {item.name}
+                            <input type='checkbox' className='checkbox'>
+
+                            </input>
+                            <div className='track_image'>
+                                <img src={item.image} alt='Track image' />
+                            </div>
+                            <div className='track_details'>
+                                <div className='track_name'>{item.name}</div>
+                                {
+                                    item.artists.map(artist => {
+                                        return (
+                                            <div key={artist.id} className='track_artist'>
+                                                {artist.name}
+                                            </div>
+                                        )
+                                    })
+                                }
+
+                            </div>
                         </div>
                     )
                 })

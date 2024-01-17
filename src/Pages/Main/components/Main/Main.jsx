@@ -31,7 +31,7 @@ const TRACKS_PER_PAGE = 20;
 
 
 export default function Main({ accessToken, signOut }) {
-    const [stage, setStage] = useState(STAGES.Create);
+    const [stage, setStage] = useState(STAGES.Select);
     const [tracks, setTracks] = useState([]);
     const [creatingPlaylist, setCreatingPlaylist] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
