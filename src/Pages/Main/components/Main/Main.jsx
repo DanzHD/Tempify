@@ -31,8 +31,8 @@ const TRACKS_PER_PAGE = 20;
 
 
 export default function Main({ accessToken, signOut }) {
-    const [stage, setStage] = useState(STAGES.Select);
-    const [tracks, setTracks] = useState(null);
+    const [stage, setStage] = useState(STAGES.Create);
+    const [tracks, setTracks] = useState([]);
     const [creatingPlaylist, setCreatingPlaylist] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -66,6 +66,7 @@ export default function Main({ accessToken, signOut }) {
 
     const handleCreatePlaylist = async () => {
         await createPlaylistWithTracks({accessToken, tracks});
+        setStage(STAGES.Create);
     }
 
 
@@ -104,8 +105,13 @@ export default function Main({ accessToken, signOut }) {
                             <Button onClick={handleCreatePlaylist} > Create </Button>
 
                         </div>
-
-
+                }
+                {
+                    (stage === STAGES.Create) &&
+                    <div className='create'>
+                        <div>Playlist Created!</div>
+                        <Button onClick={() => setStage(STAGES.Select)}>Create another playlist</Button>
+                    </div>
                 }
 
             </div>

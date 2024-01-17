@@ -1,5 +1,6 @@
 import {Fragment, useState} from "react";
 import './pagination.css'
+import cx from 'classnames'
 
 function Pagination({
     items,
@@ -13,10 +14,39 @@ function Pagination({
 
     return (
         <div className='pagination'>
-            <div className='pagination_control_container'>
+            <div className='pagination_control_container pagination_control_button'>
                 {
-                    totalPages.map(page => <div key={page} className='pagination_control_button' onClick={() => setCurrentPage(page)}> {page + 1}</div> )
+                    currentPage !== 0 &&
+                        <span className='material-symbols-outlined' onClick={() => setCurrentPage(currentPage - 1)}>
+                            navigate_before
+                        </span>
                 }
+                {
+                    totalPages.map(page => {
+
+                        let classes = 'pagination_control_button ';
+                        if (currentPage === page) {
+                            classes += 'active';
+                        }
+
+                        return (
+                            <div key={page} className={classes} onClick={() => setCurrentPage(page)}> {page + 1}</div>
+                        )
+
+                    })
+                }
+                {
+                    (currentPage !== (totalPages.length - 1)) ?
+                        <span className='material-symbols-outlined pagination_control_button' onClick={() => setCurrentPage(currentPage + 1)}>
+                            navigate_next
+                        </span>
+                        :
+                        <span style={{opacity: 0}} className='material-symbols-outlined pagination_control_button'>
+                            navigate_next
+                        </span>
+                }
+
+
             </div>
 
             {
