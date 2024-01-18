@@ -34,7 +34,7 @@ export default function Main({ accessToken, signOut }) {
     const [stage, setStage] = useState(STAGES.Select);
     const [tracks, setTracks] = useState([]);
     const [creatingPlaylist, setCreatingPlaylist] = useState(false);
-    const [currentPage, setCurrentPage] = useState(0);
+    const [addingPlaylist, setAddingPlaylist] = useState(false);
 
     const onGeneratePlaylist = async (e) => {
         e.preventDefault();
@@ -74,10 +74,12 @@ export default function Main({ accessToken, signOut }) {
     }
 
     const handleCreatePlaylist = async () => {
+        setAddingPlaylist(true);
         const filteredTracks = tracks.filter(track => track.enabled);
 
         await createPlaylistWithTracks({accessToken, tracks: filteredTracks});
         setStage(STAGES.Create);
+        setAddingPlaylist(false);
     }
 
 
@@ -94,6 +96,20 @@ export default function Main({ accessToken, signOut }) {
             </>
         )
     }
+
+    if (addingPlaylist) {
+        return (
+            <>
+                <div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <Text heading>Adding Playlist to library</Text>
+                    <div className='loader'></div>
+
+                </div>
+
+            </>
+        )
+    }
+
 
     return (
         <>
@@ -116,7 +132,7 @@ export default function Main({ accessToken, signOut }) {
                     (stage === STAGES.Tailor) &&
 
                         <div className='tailor'>
-                            <Pagination items={tracks} itemsPerPage={TRACKS_PER_PAGE} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                            <Pagination items={tracks} itemsPerPage={TRACKS_PER_PAGE} />
                             <div className='main_tailor_footer'>
 
                                 <Button onClick={() => setStage(STAGES.Select)}> Back </Button>
@@ -132,6 +148,10 @@ export default function Main({ accessToken, signOut }) {
                         <Button onClick={() => setStage(STAGES.Select)}>Create another playlist</Button>
                     </div>
                 }
+
+                <svg style={{display: 'flex', marginTop: "auto", overflow: "visible"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#90EE90" fillOpacity="1" d="M0,256L34.3,234.7C68.6,213,137,171,206,165.3C274.3,160,343,192,411,218.7C480,245,549,267,617,234.7C685.7,203,754,117,823,101.3C891.4,85,960,139,1029,176C1097.1,213,1166,235,1234,218.7C1302.9,203,1371,149,1406,122.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
+                </svg>
 
             </div>
         </>

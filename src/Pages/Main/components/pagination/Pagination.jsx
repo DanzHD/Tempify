@@ -6,10 +6,10 @@ import Text from "../../../../Common/Components/Text/Text.jsx";
 
 function Pagination({
     items,
-    itemsPerPage,
-    currentPage,
-    setCurrentPage
+    itemsPerPage
 }) {
+    const [currentPage, setCurrentPage] = useState(0);
+
 
     let totalPages = Math.ceil(items.length/itemsPerPage);
     totalPages = [...Array(totalPages).keys()];

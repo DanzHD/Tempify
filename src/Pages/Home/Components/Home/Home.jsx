@@ -37,8 +37,8 @@ export default function Home({ onConnect }) {
 
                 </div>
 
-            </section>
 
+            </section>
 
         </>
     )
