@@ -19,6 +19,10 @@
     font-family: Circular Std, sans-serif;
 }
 
+.pagination_item.disabled {
+    background-color: white;
+}
+
 .pagination_control_container {
     display: flex;
     margin-left: auto;

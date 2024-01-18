@@ -40,6 +40,12 @@ export default function Main({ accessToken, signOut }) {
         e.preventDefault();
         setCreatingPlaylist(true);
         let retrievedTracks = await getItems({accessToken});
+        retrievedTracks.map(track => {
+            track.enabled = true;
+            return track;
+        });
+
+
         /* remove duplicates */
         retrievedTracks = retrievedTracks.filter((track, i) => {
             return i === retrievedTracks.findIndex(t => track.id === t.id)
@@ -65,7 +71,9 @@ export default function Main({ accessToken, signOut }) {
     }
 
     const handleCreatePlaylist = async () => {
-        await createPlaylistWithTracks({accessToken, tracks});
+        const filteredTracks = tracks.filter(track => track.enabled);
+
+        await createPlaylistWithTracks({accessToken, tracks: filteredTracks});
         setStage(STAGES.Create);
     }
 

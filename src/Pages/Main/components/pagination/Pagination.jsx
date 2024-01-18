@@ -1,4 +1,4 @@
-import {Fragment, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 import './pagination.css'
 import cx from 'classnames'
 
@@ -50,34 +50,58 @@ function Pagination({
             </div>
 
             {
-                items.slice(currentPage * itemsPerPage, Math.min((currentPage + 1) * itemsPerPage, items.length)).map((item, i) => {
+                items.slice(currentPage * itemsPerPage, Math.min((currentPage + 1) * itemsPerPage, items.length)).map((item) => {
                     return (
-                        <div key={item.id} className='pagination_item'>
-                            <input type='checkbox' className='checkbox'>
-
-                            </input>
-                            <div className='track_image'>
-                                <img src={item.image} alt='Track image' />
-                            </div>
-                            <div className='track_details'>
-                                <div className='track_name'>{item.name}</div>
-                                {
-                                    item.artists.map(artist => {
-                                        return (
-                                            <div key={artist.id} className='track_artist'>
-                                                {artist.name}
-                                            </div>
-                                        )
-                                    })
-                                }
-
-                            </div>
-                        </div>
+                        <PaginatedRow key={item.id} item={item} />
                     )
                 })
             }
         </div>
     )
+}
+
+function PaginatedRow({
+    item
+}) {
+
+    const [enabled, setEnabled] = useState(true);
+
+    const onChange = () => {
+        setEnabled(!enabled);
+    }
+
+    useEffect(() => {
+        item.enabled = enabled;
+    }, [enabled]);
+
+    return (
+        <div key={item.id} className={cx('pagination_item', enabled ? '' : 'disabled')}>
+            <input onChange={onChange}
+                   type='checkbox'
+                   className='checkbox'
+                   checked={enabled}
+            />
+
+            <div className='track_image'>
+                <img src={item.image} alt='Track image' />
+            </div>
+            <div className='track_details'>
+                <div className='track_name'>{item.name}</div>
+                {
+                    item.artists.map(artist => {
+                        return (
+                            <div key={artist.id} className='track_artist'>
+                                {artist.name}
+                            </div>
+                        )
+                    })
+                }
+
+            </div>
+        </div>
+    )
+
+
 }
 
 export default Pagination;
