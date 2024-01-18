@@ -69,9 +69,9 @@ function App() {
         const codeVerifier = generateCodeVerifier();
         const codeChallenge = await generateCodeChallengeFromVerifier(codeVerifier);
 
-        const scope = `playlist-read-private playlist-read-collaborative user-follow-read user-read-playback-position`
-            + ` user-top-read user-read-recently-played user-library-read playlist-modify-public playlist-modify-private`
-            + ` user-read-private user-read-email`
+        const scope = `playlist-read-private playlist-read-collaborative `
+            + ` user-library-read playlist-modify-public playlist-modify-private`
+            + ` user-read-private`
         const authUrl = new URL("https://accounts.spotify.com/authorize")
 
         const params = {
