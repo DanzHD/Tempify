@@ -11,7 +11,7 @@ import createPlaylistWithTracks from "../../API/createPlaylist.jsx";
 const STAGES = {
     Select: 'Select BPM',
     Tailor: "Tailor playlist",
-    Create: 'Playlist created'
+    Create: 'Jam'
 }
 
 const TEMPO_OPTIONS = [
@@ -85,7 +85,12 @@ export default function Main({ accessToken, signOut }) {
     if (creatingPlaylist) {
         return (
             <>
-                <div>Generating Playlist</div>
+                <div style={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <Text heading>Generating Playlist</Text>
+                    <div className='loader'></div>
+
+                </div>
+
             </>
         )
     }
@@ -123,7 +128,7 @@ export default function Main({ accessToken, signOut }) {
                 {
                     (stage === STAGES.Create) &&
                     <div className='create'>
-                        <div>Playlist Created!</div>
+                        <Text subheading>Playlist Created!</Text>
                         <Button onClick={() => setStage(STAGES.Select)}>Create another playlist</Button>
                     </div>
                 }
