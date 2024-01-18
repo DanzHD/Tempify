@@ -5,8 +5,8 @@ export default function Header({logo, description, signOut}) {
 
     return (
         <div className='header'>
-            <div>{logo}</div>
-            <Text heading>{description}</Text>
+            <div style={{fontSize: '20px'}}>{logo}</div>
+            <Text>{description}</Text>
             <Button onClick={signOut}>
                 <span className='material-symbols-outlined'>logout</span>
                 <div>Sign out</div>

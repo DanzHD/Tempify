@@ -1,6 +1,8 @@
 import {Fragment, useEffect, useState} from "react";
 import './pagination.css'
 import cx from 'classnames'
+import Button from "../../../../Common/Components/Button/Button.jsx";
+import Text from "../../../../Common/Components/Text/Text.jsx";
 
 function Pagination({
     items,
@@ -11,6 +13,16 @@ function Pagination({
 
     let totalPages = Math.ceil(items.length/itemsPerPage);
     totalPages = [...Array(totalPages).keys()];
+
+    if (items.length === 0) {
+        return (
+            <div className='pagination'>
+
+                <Text subheading> No Tracks Found :(</Text>
+                <Text>There were no tracks found matching the tempo</Text>
+            </div>
+        )
+    }
 
     return (
         <div className='pagination'>

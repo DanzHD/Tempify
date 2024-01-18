@@ -52,8 +52,11 @@ export default function Main({ accessToken, signOut }) {
         })
 
         let tempo = e.target.tempo.value;
-        if (tempo === 'noTempo' || tempo === null) {
+
+        if (tempo === 'noTempo' || tempo === null || tempo === undefined) {
             setTracks(retrievedTracks)
+            setStage(STAGES.Tailor);
+            setCreatingPlaylist(false);
             return;
         }
 
@@ -90,7 +93,7 @@ export default function Main({ accessToken, signOut }) {
     return (
         <>
             <div className='main'>
-                <Header signOut={signOut} description={stage} logo={<div className='logo'>SpotPlot</div>} />
+                <Header signOut={signOut} description={stage} logo={<div className='logo'>Tempify</div>} />
                 {
                     (stage === STAGES.Select) &&
                         <div className='filter'>
@@ -112,7 +115,7 @@ export default function Main({ accessToken, signOut }) {
                             <div className='main_tailor_footer'>
 
                                 <Button onClick={() => setStage(STAGES.Select)}> Back </Button>
-                                <Button onClick={handleCreatePlaylist} > Create </Button>
+                                {tracks.length !== 0 && <Button onClick={handleCreatePlaylist} > Create </Button> }
                             </div>
 
                         </div>

@@ -12,7 +12,7 @@ async function makePlaylist({ accessToken}) {
             'Content-Type': 'application/json'
         },
         data: {
-            "name": "Playlist created by SpotPlot",
+            "name": "Playlist created by Tempify",
             "public": 'false'
         }
     }

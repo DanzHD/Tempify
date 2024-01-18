@@ -17,6 +17,8 @@
     gap: 20px;
     font-family: Circular Std, sans-serif;
     transition: .2s ease-in-out;
+    border: 1px solid grey;
+    z-index: 1;
 }
 
 .pagination_item.disabled {

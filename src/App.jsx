@@ -57,7 +57,7 @@ function App() {
 
                 setError(true);
             } finally {
-                window.history.replaceState(null, "SpotPlot", "/");
+                window.history.replaceState(null, "Tempify", "/");
             }
         }
 
@@ -95,7 +95,7 @@ function App() {
 
 
         if (spotifyConnectError === 'access_denied') {
-            window.history.replaceState(null, "SpotPlot", "/");
+            window.history.replaceState(null, "Tempify", "/");
             return void notify({
                 text: "It looks like you cancelled connecting to Spotify. Please try again"
             });
