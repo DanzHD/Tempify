@@ -109,8 +109,11 @@ export default function Main({ accessToken, signOut }) {
 
                         <div className='tailor'>
                             <Pagination items={tracks} itemsPerPage={TRACKS_PER_PAGE} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-                            <Button onClick={() => setStage(STAGES.Select)}> Back </Button>
-                            <Button onClick={handleCreatePlaylist} > Create </Button>
+                            <div className='main_tailor_footer'>
+
+                                <Button onClick={() => setStage(STAGES.Select)}> Back </Button>
+                                <Button onClick={handleCreatePlaylist} > Create </Button>
+                            </div>
 
                         </div>
                 }

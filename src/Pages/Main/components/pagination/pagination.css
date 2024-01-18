@@ -1,8 +1,7 @@
 .pagination {
     display: flex;
     flex-direction: column;
-    padding-left: 50px;
-    padding-right: 50px;
+
 
 }
 
@@ -17,6 +16,7 @@
     align-items: center;
     gap: 20px;
     font-family: Circular Std, sans-serif;
+    transition: .2s ease-in-out;
 }
 
 .pagination_item.disabled {
@@ -91,3 +91,4 @@
         height: 30px;
     }
 }
+

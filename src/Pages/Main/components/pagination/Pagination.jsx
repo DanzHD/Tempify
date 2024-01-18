@@ -41,7 +41,7 @@ function Pagination({
                             navigate_next
                         </span>
                         :
-                        <span style={{opacity: 0}} className='material-symbols-outlined pagination_control_button'>
+                        <span style={{opacity: 0, cursor: 'none'}} className='material-symbols-outlined pagination_control_button'>
                             navigate_next
                         </span>
                 }
@@ -64,7 +64,7 @@ function PaginatedRow({
     item
 }) {
 
-    const [enabled, setEnabled] = useState(true);
+    const [enabled, setEnabled] = useState(item.enabled);
 
     const onChange = () => {
         setEnabled(!enabled);
