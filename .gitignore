@@ -25,3 +25,5 @@ dist-ssr
 .eslintrc.cjs
 
 src/.env
+
+.vercel

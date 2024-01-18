@@ -26,13 +26,11 @@ export default function Home({ onConnect }) {
 
 
                     <Button style={{marginTop: '20px'}} onClick={onConnect} >
-                        <img
-                            alt='logo'
-                            src='../../../../assets/Spotify_Icon_RGB_Black.png'
-                            style={ {height: '25px', width: '25px'}}/>
+
                         <Text style={{fontStyle: 'Circular Std', fontWeight: '700', marginLeft: '10px'}}>
                             Connect to Spotify
                         </Text>
+                        <div className='material-symbols-outlined'>arrow_right_alt</div>
                     </Button>
 
                 </div>
