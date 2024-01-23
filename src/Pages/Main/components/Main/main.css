@@ -118,6 +118,13 @@
     z-index: 9999;
 
 }
+@media screen and (max-width: 767px) {
+    _::-webkit-full-page-media, _:future, :root .safari_only {
+        padding-bottom: 65px;
+        background-color: white;
+        height: 130px;
+    }
+}
 
 .tailor {
     padding-left: 50px;

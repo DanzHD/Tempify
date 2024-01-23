@@ -133,7 +133,7 @@ export default function Main({ accessToken, signOut }) {
 
                         <div className='tailor'>
                             <Pagination items={tracks} itemsPerPage={TRACKS_PER_PAGE} />
-                            <div className='main_tailor_footer'>
+                            <div className='main_tailor_footer safari_only'>
 
                                 <Button onClick={() => setStage(STAGES.Select)}> Back </Button>
                                 {tracks.length !== 0 && <Button onClick={handleCreatePlaylist} > Create </Button> }
