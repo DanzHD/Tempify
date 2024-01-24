@@ -14,6 +14,13 @@ APIs: [`Spotify`](https://developer.spotify.com/documentation/web-api/)
 
 Authentication: [`OAuth pkce`](https://oauth.net/2/pkce/)
 
+## Screenshots
+
+![Homepage](/public/homepage.png)
+![Select Tempo Page](/public/playlist_created_page.png)
+![Select playlist page](/public/Selecting_playlist_page.png)
+![Tailor playlist page](/public/tailor_playlist_page.png)
+
 ## How it works 
 1. Login with Spotify
 2. Enter a certain Tempo
