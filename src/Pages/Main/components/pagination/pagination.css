@@ -92,5 +92,26 @@
         width: 30px;
         height: 30px;
     }
+    .play_on_spotify_button {
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 8px;
+    }
 }
 
+.play_on_spotify_button {
+    width: fit-content;
+    height: 30px;
+    font-size: 14px;
+    padding: 10px 20px;
+    font-weight: 600;
+    background-color: white;
+    border: 2px solid black;
+    margin-top: 10px;
+
+}
+
+.play_on_spotify_button:hover {
+    color: green;
+    border: 2px solid green;
+}

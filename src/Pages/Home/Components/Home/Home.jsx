@@ -26,7 +26,7 @@ export default function Home({ onConnect }) {
 
 
                     <Button style={{marginTop: '20px'}} onClick={onConnect} >
-
+                        <i style={{fontSize: '24px'}} className='fa fa-spotify'></i>
                         <Text style={{fontStyle: 'Circular Std', fontWeight: '700', marginLeft: '10px'}}>
                             Connect to Spotify
                         </Text>

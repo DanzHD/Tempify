@@ -32,6 +32,10 @@
     .header > p {
         font-size: 26px;
     }
+    .tailor {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
 }
 
 /* laptop view */
@@ -53,6 +57,10 @@
     .filter {
         padding: 80px 10px;
     }
+    .tailor {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
 }
 
 /* Large screen view */
@@ -70,6 +78,10 @@
     .filter {
         padding-top: 120px;
         padding-bottom: 120px;
+    }
+    .tailor {
+        padding-left: 50px;
+        padding-right: 50px;
     }
 }
 
@@ -126,10 +138,9 @@
     }
 }
 
-.tailor {
-    padding-left: 50px;
-    padding-right: 50px;
-}
+
+
+
 
 .header > p {
     font-weight: 800;

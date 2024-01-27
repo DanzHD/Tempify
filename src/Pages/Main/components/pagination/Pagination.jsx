@@ -23,6 +23,7 @@ function Pagination({
             </div>
         )
     }
+    console.log(items);
 
     return (
         <div className='pagination'>
@@ -108,6 +109,13 @@ function PaginatedRow({
                         )
                     })
                 }
+                <div className='play_on_spotify'>
+                    <Button className='play_on_spotify_button'
+                        onClick={() => window.open(item.uri)}>
+                        <i style={{fontSize: '21px', marginRight: '5px'}} className="fa fa-spotify" aria-hidden="true"></i>
+                        Play on Spotify
+                    </Button>
+                </div>
 
             </div>
         </div>
