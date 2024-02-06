@@ -26,6 +26,7 @@
     align-items: center;
     cursor: pointer;
     border: 0;
+    color: black; !important;
 }
 
 .button:hover {
