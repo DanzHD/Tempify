@@ -1,4 +1,4 @@
-import {Fragment, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import './pagination.css'
 import cx from 'classnames'
 import Button from "../../../../Common/Components/Button/Button.jsx";
@@ -8,6 +8,8 @@ function Pagination({
     items,
     itemsPerPage
 }) {
+
+
     const [currentPage, setCurrentPage] = useState(0);
 
 
@@ -23,7 +25,6 @@ function Pagination({
             </div>
         )
     }
-    console.log(items);
 
     return (
         <div className='pagination'>
@@ -77,6 +78,17 @@ function PaginatedRow({
     item
 }) {
 
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const onOpenURL = () => {
+
+        window.open(`https://open.spotify.com/track/${item.id}`)
+    }
+
+    const onOpenURI = () => {
+        window.open(item.uri);
+    }
+
     const [enabled, setEnabled] = useState(item.enabled);
 
     const onChange = () => {
@@ -110,11 +122,28 @@ function PaginatedRow({
                     })
                 }
                 <div className='play_on_spotify'>
-                    <Button className='play_on_spotify_button'
-                        onClick={() => window.open(item.uri)}>
+                    <Button onClick={() => setMenuOpen(!menuOpen)} className='play_on_spotify_button'>
                         <i style={{fontSize: '21px', marginRight: '5px'}} className="fa fa-spotify" aria-hidden="true"></i>
                         Play on Spotify
                     </Button>
+                    <div className="menu-container">
+
+                        {
+                            menuOpen &&
+                                <div className="menu">
+                                    <div className="menu__item" onClick={() => onOpenURI()}>
+                                        <i style={{fontSize: '24px'}} className="fa fa-spotify" aria-hidden="true"></i>
+                                        <Text>In the app</Text>
+                                    </div>
+                                    <div className="menu__item" onClick={() => onOpenURL()}>
+                                        <span className="material-symbols-outlined">
+                                            public
+                                        </span>
+                                        <Text>On the web</Text>
+                                    </div>
+                                </div>
+                        }
+                    </div>
                 </div>
 
             </div>

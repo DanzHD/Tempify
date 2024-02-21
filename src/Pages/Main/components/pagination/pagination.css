@@ -18,7 +18,7 @@
     font-family: Circular Std, sans-serif;
     transition: .2s ease-in-out;
     border: 1px solid grey;
-    z-index: 1;
+
 }
 
 .pagination_item.disabled {
@@ -116,4 +116,44 @@
 .play_on_spotify_button:hover {
     color: green;
     border: 2px solid green;
+}
+
+
+
+
+.menu {
+    width: max-content;
+    top: 10px;
+    position: absolute;
+    overflow: visible;
+    font-size: 20px !important;
+
+    background-color: white;
+    font-family: Circular Std, sans-serif;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 10px;
+    left: 10px;
+    box-shadow: 0 0 5px black;
+    border-radius: 5px;
+
+}
+
+.menu__item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.menu__item > p {
+    padding-left: 15px;
+    font-weight: 500;
+}
+
+.menu-container {
+    position: relative;
+    width: 0;
+    height: 0;
 }
