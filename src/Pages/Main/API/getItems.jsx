@@ -87,9 +87,17 @@ async function getAllTrackAnalysis({ accessToken, tracks }) {
 
     const requests = []
     for (let i = 0; i < tracks.length; i += MAX_ANALYSIS_LIMIT) {
-        let analyseTracks = tracks.slice(i, Math.min(i + MAX_ANALYSIS_LIMIT, tracks.length)).map(track => track.id).toString();
+        let analyseTracks = tracks.slice(i, Math.min(i + MAX_ANALYSIS_LIMIT, tracks.length)).map(track => {
+
+            return track.id
+        }).toString();
+
+
+
         let {data: {audio_features: audioFeatures}} = await axios(`https://api.spotify.com/v1/audio-features?ids=${analyseTracks}`, options);
+
         requests.push(audioFeatures.map(audioFeature => {
+
             let track = tracks.find(track => audioFeature.id === track.id);
             return {...audioFeature, ...track}
 
@@ -139,7 +147,7 @@ export default async function getItems({accessToken}) {
 
     const likedTracks = await getLikedTracks({accessToken});
 
-    tracks = [...tracks, likedTracks];
+    tracks = [...tracks, ...likedTracks];
 
     let tracksAudioFeatures = await getAllTrackAnalysis({ accessToken, tracks})
 
